@@ -8,25 +8,25 @@ const cacheAssets = [
   "/models/civil.gltf",
   "/models/dg.gltf",
   "/models/gtac.gltf",
+  "iit.gltf",
+  "lc.gltf",
   "/models/karma.gltf",
   "/models/lib.gltf",
   "/models/lt1.gltf",
   "/models/sb.gltf",
   "/models/sryia.gltf",
-  "/models/vt.gltf",
+  "direction2atccd.bin",
   "/models/direction2atcivil.bin",
   "/models/direction2atdg.bin",
   "/models/direction2atgamcha.bin",
   "/models/direction2atkarma.bin",
+  "directionatiitlogo.bin",
   "/models/direction2atlc.bin",
   "/models/direction2atlib.bin",
   "/models/direction2atsb.bin",
   "/models/direction2atviswarayya.bin",
   "/models/directionatLT1.bin",
-  "/models/directionatvt.bin",
-  "https://apis.mapmyindia.com/advancedmaps/v1/mlshmhqdw8sytpv197pbjfdes81y5k93/map_load?v=1.3",
-  "https://aframe.io/releases/0.9.2/aframe.min.js",
-  "https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"
+  "/models/directionatvt.bin"
 ];
 
 // Call Install Event

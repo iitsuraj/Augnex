@@ -6,41 +6,43 @@ if ("serviceWorker" in navigator) {
       .catch(err => console.log(`Service Worker: Error: ${err}`));
   });
 }
+
 var centre = new L.LatLng(25.260644, 82.986878);
 var map = null;
+
 var data = [
-  // {
-  //   placeArea: "limdicorner",
-  //   color: "#d09f5f",
-  //   name: "lc",
-  //   objects: [
-  //     {
-  //       name: "lcdirection",
-  //       center: { lat: 25.260654, long: 82.986879 },
-  //       model: "./models/lc.glb",
-  //       scale: "15 15 15",
-  //       render: false
-  //     }
-  //   ],
-  //   points: [
-  //     new L.LatLng(25.26001, 82.984468),
-  //     new L.LatLng(25.26009, 82.984446),
-  //     new L.LatLng(25.260609, 82.986391),
-  //     new L.LatLng(25.26106, 82.986753),
-  //     new L.LatLng(25.262606, 82.986494),
-  //     new L.LatLng(25.262613, 82.986639),
-  //     new L.LatLng(25.261356, 82.986819),
-  //     new L.LatLng(25.260883, 82.987518),
-  //     new L.LatLng(25.26126, 82.989204),
-  //     new L.LatLng(25.26113, 82.989282),
-  //     new L.LatLng(25.260681, 82.987215),
-  //     new L.LatLng(25.260251, 82.987063),
-  //     new L.LatLng(25.25902, 82.987606),
-  //     new L.LatLng(25.258964, 82.987503),
-  //     new L.LatLng(25.260396, 82.986903),
-  //     new L.LatLng(25.260505, 82.986483)
-  //   ]
-  // },
+  {
+    placeArea: "limdicorner",
+    color: "#d09f5f",
+    name: "lc",
+    objects: [
+      {
+        name: "lcdirection",
+        center: { lat: 25.260654, long: 82.986879 },
+        model: "./models/lc.gltf",
+        scale: "15 15 15",
+        render: false
+      }
+    ],
+    points: [
+      new L.LatLng(25.26001, 82.984468),
+      new L.LatLng(25.26009, 82.984446),
+      new L.LatLng(25.260609, 82.986391),
+      new L.LatLng(25.26106, 82.986753),
+      new L.LatLng(25.262606, 82.986494),
+      new L.LatLng(25.262613, 82.986639),
+      new L.LatLng(25.261356, 82.986819),
+      new L.LatLng(25.260883, 82.987518),
+      new L.LatLng(25.26126, 82.989204),
+      new L.LatLng(25.26113, 82.989282),
+      new L.LatLng(25.260681, 82.987215),
+      new L.LatLng(25.260251, 82.987063),
+      new L.LatLng(25.25902, 82.987606),
+      new L.LatLng(25.258964, 82.987503),
+      new L.LatLng(25.260396, 82.986903),
+      new L.LatLng(25.260505, 82.986483)
+    ]
+  },
   {
     placeArea: "advroad",
     color: "#92AA83",
@@ -48,7 +50,7 @@ var data = [
     objects: [
       {
         name: "ccd",
-        center: { lat: 25.258504, long: 82.987816 },
+        center: { lat: 25.258502, long: 82.987814 },
         model: "./models/ccd.gltf",
         scale: "15 15 15",
         render: false
@@ -78,7 +80,7 @@ var data = [
     objects: [
       {
         name: "gtac",
-        center: { lat: 25.258504, long: 82.987816 },
+        center: { lat: 25.259897, long: 82.983791 },
         model: "./models/gtac.gltf",
         scale: "15 15 15",
         render: false
@@ -108,7 +110,7 @@ var data = [
     objects: [
       {
         name: "karma",
-        center: { lat: 25.258504, long: 82.987816 },
+        center: { lat: 25.257157, long: 82.984955 },
         model: "./models/karma.gltf",
         scale: "15 15 15",
         render: false
@@ -133,38 +135,38 @@ var data = [
       new L.LatLng(25.256652, 82.984338)
     ]
   },
-  // {
-  //   placeArea: "lotuslake",
-  //   color: "#559CAD",
-  //   area: "lotuslake",
-  //   objects: [
-  //     {
-  //       name: "lake",
-  //       center: { lat: 25.258504, long: 82.987816 },
-  //       model: "./models/lib.gltf",
-  //       scale: "15 15 15",
-  //       render: false
-  //     }
-  //   ],
-  //   points: [
-  //     new L.LatLng(25.263086, 82.98665),
-  //     new L.LatLng(25.263175, 82.98926),
-  //     new L.LatLng(25.262862, 82.989571),
-  //     new L.LatLng(25.259885, 82.990467),
-  //     new L.LatLng(25.260026, 82.990825),
-  //     new L.LatLng(25.263055, 82.989831),
-  //     new L.LatLng(25.263217, 82.990016),
-  //     new L.LatLng(25.263374, 82.992638),
-  //     new L.LatLng(25.263666, 82.992603),
-  //     new L.LatLng(25.263536, 82.990137),
-  //     new L.LatLng(25.263739, 82.989814),
-  //     new L.LatLng(25.265466, 82.990027),
-  //     new L.LatLng(25.265446, 82.989693),
-  //     new L.LatLng(25.263908, 82.989471),
-  //     new L.LatLng(25.263516, 82.98916),
-  //     new L.LatLng(25.263375, 82.986681)
-  //   ]
-  // },
+  {
+    placeArea: "lotuslake",
+    color: "#559CAD",
+    area: "lotuslake",
+    objects: [
+      {
+        name: "lake",
+        center: { lat: 25.263332, long: 82.989657 },
+        model: "./models/iit.gltf",
+        scale: "15 15 15",
+        render: false
+      }
+    ],
+    points: [
+      new L.LatLng(25.263086, 82.98665),
+      new L.LatLng(25.263175, 82.98926),
+      new L.LatLng(25.262862, 82.989571),
+      new L.LatLng(25.259885, 82.990467),
+      new L.LatLng(25.260026, 82.990825),
+      new L.LatLng(25.263055, 82.989831),
+      new L.LatLng(25.263217, 82.990016),
+      new L.LatLng(25.263374, 82.992638),
+      new L.LatLng(25.263666, 82.992603),
+      new L.LatLng(25.263536, 82.990137),
+      new L.LatLng(25.263739, 82.989814),
+      new L.LatLng(25.265466, 82.990027),
+      new L.LatLng(25.265446, 82.989693),
+      new L.LatLng(25.263908, 82.989471),
+      new L.LatLng(25.263516, 82.98916),
+      new L.LatLng(25.263375, 82.986681)
+    ]
+  },
   {
     placeArea: "dgcorner",
     color: "#4A5899",
@@ -172,7 +174,7 @@ var data = [
     objects: [
       {
         name: "dg",
-        center: { lat: 25.258504, long: 82.987816 },
+        center: { lat: 25.263211, long: 82.986463 },
         model: "./models/dg.gltf",
         scale: "15 15 15",
         render: false
@@ -204,7 +206,7 @@ var data = [
     objects: [
       {
         name: "civildep",
-        center: { lat: 25.258504, long: 82.987816 },
+        center: { lat: 25.263479, long: 82.992751 },
         model: "./models/civil.gltf",
         scale: "15 15 15",
         render: false
@@ -236,7 +238,7 @@ var data = [
     objects: [
       {
         name: "sb",
-        center: { lat: 25.258504, long: 82.987816 },
+        center: { lat: 25.261059, long: 82.993406 },
         model: "./models/sb.gltf",
         scale: "15 15 15",
         render: false
@@ -268,7 +270,7 @@ var data = [
     objects: [
       {
         name: "lt1",
-        center: { lat: 25.258504, long: 82.987816 },
+        center: { lat: 25.259807, long: 82.990731 },
         model: "./models/lt1.gltf",
         scale: "15 15 15",
         render: false
@@ -300,7 +302,7 @@ var data = [
     objects: [
       {
         name: "sryia",
-        center: { lat: 25.258504, long: 82.987816 },
+        center: { lat: 25.263026, long: 82.983826 },
         model: "./models/sryia.gltf",
         scale: "15 15 15",
         render: false
@@ -324,10 +326,12 @@ var data = [
     ]
   }
 ];
+
 var options = {
   enableHighAccuracy: true,
   maximumAge: 3000
 };
+
 window.onload = () => {
   const scene = document.querySelector("a-scene");
   // map = new MapmyIndia.Map("map", {
