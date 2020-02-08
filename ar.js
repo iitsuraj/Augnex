@@ -328,8 +328,7 @@ var data = [
 ];
 
 var options = {
-  enableHighAccuracy: true,
-  maximumAge: 3000
+  enableHighAccuracy: true
 };
 
 window.onload = () => {
@@ -346,8 +345,8 @@ window.onload = () => {
   }
   function isPointInLayer(user, layer) {
     var within = false;
-    var x = 25.260701 //user.latitude;
-    var y = 82.987059 //user.longitude;
+    var x = user.latitude;
+    var y = user.longitude;
     for (var ii = 0; ii < layer.getLatLngs().length; ii++) {
       var polyPoints = layer.getLatLngs()[ii];
       for (
@@ -384,9 +383,10 @@ window.onload = () => {
                 );
                 icon.setAttribute("name", object.name);
                 icon.setAttribute("gltf-model", object.model);
-                // icon.setAttribute("scale", object.scale);
+                icon.setAttribute("scale", object.scale);
                 icon.setAttribute("id", object.name);
                 scene.appendChild(icon);
+                object.render = !object.render;
               }
             });
           }
