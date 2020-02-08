@@ -20,7 +20,7 @@ var data = [
         name: "lcdirection",
         center: { lat: 25.260654, long: 82.986879 },
         model: "./models/lc.gltf",
-        scale: "15 15 15",
+        scale: "150 150 150",
         render: false
       }
     ],
@@ -52,7 +52,7 @@ var data = [
         name: "ccd",
         center: { lat: 25.258502, long: 82.987814 },
         model: "./models/ccd.gltf",
-        scale: "15 15 15",
+        scale: "150 150 150",
         render: false
       }
     ],
@@ -82,7 +82,7 @@ var data = [
         name: "gtac",
         center: { lat: 25.259897, long: 82.983791 },
         model: "./models/gtac.gltf",
-        scale: "15 15 15",
+        scale: "150 150 150",
         render: false
       }
     ],
@@ -112,7 +112,7 @@ var data = [
         name: "karma",
         center: { lat: 25.257157, long: 82.984955 },
         model: "./models/karma.gltf",
-        scale: "15 15 15",
+        scale: "150 150 150",
         render: false
       }
     ],
@@ -144,7 +144,7 @@ var data = [
         name: "lake",
         center: { lat: 25.263332, long: 82.989657 },
         model: "./models/iit.gltf",
-        scale: "15 15 15",
+        scale: "150 150 150",
         render: false
       }
     ],
@@ -176,7 +176,7 @@ var data = [
         name: "dg",
         center: { lat: 25.263211, long: 82.986463 },
         model: "./models/dg.gltf",
-        scale: "15 15 15",
+        scale: "150 150 150",
         render: false
       }
     ],
@@ -208,7 +208,7 @@ var data = [
         name: "civildep",
         center: { lat: 25.263479, long: 82.992751 },
         model: "./models/civil.gltf",
-        scale: "15 15 15",
+        scale: "150 150 150",
         render: false
       }
     ],
@@ -240,7 +240,7 @@ var data = [
         name: "sb",
         center: { lat: 25.261059, long: 82.993406 },
         model: "./models/sb.gltf",
-        scale: "15 15 15",
+        scale: "150 150 150",
         render: false
       }
     ],
@@ -272,7 +272,7 @@ var data = [
         name: "lt1",
         center: { lat: 25.259807, long: 82.990731 },
         model: "./models/lt1.gltf",
-        scale: "15 15 15",
+        scale: "150 150 150",
         render: false
       }
     ],
@@ -304,7 +304,7 @@ var data = [
         name: "sryia",
         center: { lat: 25.263026, long: 82.983826 },
         model: "./models/sryia.gltf",
-        scale: "15 15 15",
+        scale: "150 150 150",
         render: false
       }
     ],
@@ -369,50 +369,47 @@ window.onload = () => {
   }
 
   function renderplace() {
-    navigator.geolocation.watchPosition(
-      postion => {
-        // console.log("calling here", postion);
-        data.forEach(area => {
-          if (isPointInLayer(postion.coords, area.name)) {
-            // console.log(area.placeArea);
-            if (area.objects.length > 0) {
-              area.objects.forEach(object => {
-                if (!object.render) {
-                  const icon = document.createElement("a-entity");
-                  icon.setAttribute(
-                    "gps-entity-place",
-                    `latitude: ${object.center.lat}; longitude: ${object.center.long};`
-                  );
-                  icon.setAttribute("name", object.name);
-                  icon.setAttribute("gltf-model", object.model);
-                  // icon.setAttribute("scale", object.scale);
-                  icon.setAttribute("id", object.name);
-                  scene.appendChild(icon);
-                }
-              });
-            }
-          } else {
-            if (area.objects.length > 0) {
-              area.objects.forEach(object => {
-                if (object.render) {
-                  object.render = !object.render;
-                  var element = document.getElementById(object.name);
-                  element.parentNode.removeChild(element);
-                }
-              });
-            }
+    navigator.geolocation.getCurrentPosition(postion => {
+      // console.log("calling here", postion);
+      data.forEach(area => {
+        if (isPointInLayer(postion.coords, area.name)) {
+          // console.log(area.placeArea);
+          if (area.objects.length > 0) {
+            area.objects.forEach(object => {
+              if (!object.render) {
+                const icon = document.createElement("a-entity");
+                icon.setAttribute(
+                  "gps-entity-place",
+                  `latitude: ${object.center.lat}; longitude: ${object.center.long};`
+                );
+                icon.setAttribute("name", object.name);
+                icon.setAttribute("gltf-model", object.model);
+                // icon.setAttribute("scale", object.scale);
+                icon.setAttribute("id", object.name);
+                scene.appendChild(icon);
+              }
+            });
           }
-        });
-      },
-      err => {
-        console.log(err);
-      },
-      options
-    );
+        } else {
+          if (area.objects.length > 0) {
+            area.objects.forEach(object => {
+              if (object.render) {
+                object.render = !object.render;
+                var element = document.getElementById(object.name);
+                element.parentNode.removeChild(element);
+              }
+            });
+          }
+        }
+      });
+    });
   }
 
   data.forEach(area => {
     createPolygon(area);
   });
   renderplace();
+  setInterval(() => {
+    renderplace();
+  }, 5000);
 };
