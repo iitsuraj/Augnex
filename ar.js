@@ -1,11 +1,11 @@
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("./sw.js")
-      .then(reg => console.log("Service Worker: Registered (Pages)"))
-      .catch(err => console.log(`Service Worker: Error: ${err}`));
-  });
-}
+// if ("serviceWorker" in navigator) {
+//   window.addEventListener("load", () => {
+//     navigator.serviceWorker
+//       .register("./sw.js")
+//       .then(reg => console.log("Service Worker: Registered (Pages)"))
+//       .catch(err => console.log(`Service Worker: Error: ${err}`));
+//   });
+// }
 
 var centre = new L.LatLng(25.260644, 82.986878);
 var map = null;
@@ -21,7 +21,8 @@ var data = [
         center: { lat: 25.260654, long: 82.986879 },
         model: "./models/lc.gltf",
         scale: "60 60 60",
-        render: false
+        render: false,
+        rotation: "0 180 0"
       }
     ],
     points: [
@@ -53,7 +54,8 @@ var data = [
         center: { lat: 25.258502, long: 82.987814 },
         model: "./models/ccd.gltf",
         scale: "60 60 60",
-        render: false
+        render: false,
+        rotation: "0 270 0"
       }
     ],
     points: [
@@ -83,7 +85,8 @@ var data = [
         center: { lat: 25.259897, long: 82.983791 },
         model: "./models/gtac.gltf",
         scale: "60 60 60",
-        render: false
+        render: false,
+        rotation: " 0 90 0"
       }
     ],
     points: [
@@ -113,7 +116,8 @@ var data = [
         center: { lat: 25.257157, long: 82.984955 },
         model: "./models/karma.gltf",
         scale: "60 60 60",
-        render: false
+        render: false,
+        rotation: "0 0 0"
       }
     ],
     points: [
@@ -145,7 +149,8 @@ var data = [
         center: { lat: 25.263332, long: 82.989657 },
         model: "./models/iit.gltf",
         scale: "60 60 60",
-        render: false
+        render: false,
+        rotation: "0 180 0"
       }
     ],
     points: [
@@ -177,7 +182,8 @@ var data = [
         center: { lat: 25.263211, long: 82.986463 },
         model: "./models/dg.gltf",
         scale: "60 60 60",
-        render: false
+        render: false,
+        rotation: "0 180 0"
       }
     ],
     points: [
@@ -209,7 +215,8 @@ var data = [
         center: { lat: 25.263479, long: 82.992751 },
         model: "./models/civil.gltf",
         scale: "60 60 60",
-        render: false
+        render: false,
+        rotation: "0 0 0"
       }
     ],
     points: [
@@ -241,7 +248,8 @@ var data = [
         center: { lat: 25.261059, long: 82.993406 },
         model: "./models/sb.gltf",
         scale: "60 60 60",
-        render: false
+        render: false,
+        rotation: "0 0 0"
       }
     ],
     points: [
@@ -273,7 +281,8 @@ var data = [
         center: { lat: 25.259807, long: 82.990731 },
         model: "./models/lt1.gltf",
         scale: "60 60 60",
-        render: false
+        render: false,
+        rotation: "0 0 0"
       }
     ],
     points: [
@@ -305,7 +314,8 @@ var data = [
         center: { lat: 25.263026, long: 82.983826 },
         model: "./models/sryia.gltf",
         scale: "60 60 60",
-        render: false
+        render: false,
+        rotation: "0 270 0"
       }
     ],
     points: [
@@ -383,8 +393,10 @@ window.onload = () => {
                 );
                 icon.setAttribute("name", object.name);
                 icon.setAttribute("gltf-model", object.model);
-                icon.setAttribute("scale", object.scale);
+                icon.setAttribute("scale", "30 30 30");
+                icon.setAttribute("rotation", object.rotation);
                 icon.setAttribute("id", object.name);
+                icon.setAttribute("position", "0 200 0");
                 scene.appendChild(icon);
                 object.render = !object.render;
               }
@@ -413,4 +425,3 @@ window.onload = () => {
     renderplace();
   }, 5000);
 };
-
