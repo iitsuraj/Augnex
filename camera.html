@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Cache-control" content="public" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+      Augnex
+    </title>
+    <script src="https://apis.mapmyindia.com/advancedmaps/v1/mlshmhqdw8sytpv197pbjfdes81y5k93/map_load?v=1.3"></script>
+    <style>
+      html,
+      body,
+      #map {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+    <script>
+      THREEx.ArToolkitContext.baseURL =
+        "https://raw.githack.com/jeromeetienne/ar.js/master/three.js/";
+    </script>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene
+      cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;"
+      raycaster="objects: [gps-entity-place];"
+      vr-mode-ui="enabled: false"
+      embedded
+      arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;"
+    >
+      <a-camera gps-camera="minDistance: 10" rotation-reader> </a-camera>
+    </a-scene>
+    <!-- <div id="map"></div> -->
+    <script src="./ar.js"></script>
+  </body>
+</html>

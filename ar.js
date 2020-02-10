@@ -1,12 +1,3 @@
-// if ("serviceWorker" in navigator) {
-//   window.addEventListener("load", () => {
-//     navigator.serviceWorker
-//       .register("./sw.js")
-//       .then(reg => console.log("Service Worker: Registered (Pages)"))
-//       .catch(err => console.log(`Service Worker: Error: ${err}`));
-//   });
-// }
-
 var centre = new L.LatLng(25.260644, 82.986878);
 var map = null;
 
@@ -396,7 +387,7 @@ window.onload = () => {
                 icon.setAttribute("scale", "30 30 30");
                 icon.setAttribute("rotation", object.rotation);
                 icon.setAttribute("id", object.name);
-                icon.setAttribute("position", "0 200 0");
+                // icon.setAttribute("position", "0 200 0");
                 scene.appendChild(icon);
                 object.render = !object.render;
               }

@@ -25,7 +25,12 @@ const cacheAssets = [
   "./models/direction2atsb.bin",
   "./models/direction2atviswarayya.bin",
   "./models/directionatLT1.bin",
-  "./models/directionatvt.bin"
+  "./models/directionatvt.bin",
+  "./SVG/csi.svg",
+  "./SVG/augnex.svg",
+  "./SVG/Technex.svg",
+  "./ar.js",
+  "./canvas.js"
 ];
 
 // Call Install Event
