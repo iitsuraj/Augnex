@@ -384,7 +384,7 @@ window.onload = () => {
                 );
                 icon.setAttribute("name", object.name);
                 icon.setAttribute("gltf-model", object.model);
-                icon.setAttribute("scale", "30 30 30");
+                // icon.setAttribute("scale", "30 30 30");
                 icon.setAttribute("rotation", object.rotation);
                 icon.setAttribute("id", object.name);
                 // icon.setAttribute("position", "0 200 0");
