@@ -129,7 +129,7 @@ document.getElementById("sengine").addEventListener("click", function() {
 });
 
 document.getElementById("getin").addEventListener("click", function() {
-  window.location = "/camera.html";
+  window.location = "https://iitsuraj.github.io/camera.html";
 });
 
 animate();
