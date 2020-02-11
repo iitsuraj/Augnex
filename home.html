@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>GeoAR.js demo</title>
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+    <script>
+      THREEx.ArToolkitContext.baseURL =
+        "https://raw.githack.com/jeromeetienne/ar.js/master/three.js/";
+    </script>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene
+      cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;"
+      raycaster="objects: [gps-entity-place];"
+      vr-mode-ui="enabled: false"
+      embedded
+      arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;"
+    >
+      <a-camera gps-camera rotation-reader> </a-camera>
+    </a-scene>
+    <script>
+      const loadPlaces = function(coords) {
+        // COMMENT FOLLOWING LINE IF YOU WANT TO USE STATIC DATA AND ADD COORDINATES IN THE FOLLOWING 'PLACES' ARRAY
+        const method = "api";
+
+        const PLACES = [
+          {
+            name: "Your place name",
+            location: {
+              lat: 25.258119, // add here latitude if using static data
+              lng: 82.985516 // add here longitude if using static data
+            }
+          }
+        ];
+
+        if (method === "api") {
+          return loadPlaceFromAPIs(coords);
+        }
+
+        return Promise.resolve(PLACES);
+      };
+
+      // getting places from REST APIs
+      function loadPlaceFromAPIs(position) {
+        var endpoint =
+          "https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf62487ff45692bdc34cdfbc509ce51f522ec0&start=82.985853,25.257578&end=82.993757,25.260576";
+        return fetch(endpoint)
+          .then(res => {
+            return res.json().then(resp => {
+              return resp.features["0"].geometry.coordinates;
+            });
+          })
+          .catch(err => {
+            console.error("Error with places API", err);
+          });
+      }
+
+      window.onload = () => {
+        const scene = document.querySelector("a-scene");
+
+        // first get current user location
+        return navigator.geolocation.getCurrentPosition(
+          function(position) {
+            // then use it to load from remote APIs some places nearby
+            loadPlaces(position.coords).then(places => {
+              places.forEach(place => {
+                const latitude = place[1];
+                const longitude = place[0];
+
+                // add place icon
+                const icon = document.createElement("a-image");
+                icon.setAttribute(
+                  "gps-entity-place",
+                  `latitude: ${latitude}; longitude: ${longitude}`
+                );
+                icon.setAttribute("name", "place.name");
+                icon.setAttribute("src", "./SVG/marker.svg");
+
+                // for debug purposes, just show in a bigger scale, otherwise I have to personally go on places...
+                icon.setAttribute("scale", "40, 40,40");
+
+                // icon.addEventListener("loaded", () =>
+                //   window.dispatchEvent(
+                //     new CustomEvent("gps-entity-place-loaded")
+                //   )
+                // );
+
+                // const clickListener = function(ev) {
+                //   ev.stopPropagation();
+                //   ev.preventDefault();
+
+                //   const name = ev.target.getAttribute("name");
+
+                //   const el =
+                //     ev.detail.intersection && ev.detail.intersection.object.el;
+
+                //   if (el && el === ev.target) {
+                //     const label = document.createElement("span");
+                //     const container = document.createElement("div");
+                //     container.setAttribute("id", "place-label");
+                //     label.innerText = name;
+                //     container.appendChild(label);
+                //     document.body.appendChild(container);
+
+                //     setTimeout(() => {
+                //       container.parentElement.removeChild(container);
+                //     }, 1500);
+                //   }
+                // };
+
+                // icon.addEventListener("click", clickListener);
+
+                scene.appendChild(icon);
+              });
+            });
+          },
+          err => console.error("Error in retrieving position", err),
+          {
+            enableHighAccuracy: true,
+            maximumAge: 0,
+            timeout: 27000
+          }
+        );
+      };
+    </script>
+  </body>
+</html>
