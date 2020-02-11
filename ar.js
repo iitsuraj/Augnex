@@ -74,7 +74,7 @@ var data = [
       {
         name: "gtac",
         center: { lat: 25.259897, long: 82.983791 },
-        model: "./models/gtac.gltf",
+        model: "./models/direction2atgamcha.gltf",
         scale: "60 60 60",
         render: false,
         rotation: " 0 90 0"
