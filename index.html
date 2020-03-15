@@ -1,166 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="UTF-8" />
-    <title>Welcome Augnex</title>
-    <link rel="stylesheet" href="./canvas.css" />
-    <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        background: #000;
-      }
 
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        width: 100%;
-        position: fixed;
-        display: flex;
-        background-color: #ffffff;
-        justify-content: space-between;
-      }
+<head>
+  <meta http-equiv="Cache-control" content="public" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <title>Welcome Augnex</title>
+  <link rel="stylesheet" href="./canvas.css" />
+  <link rel="icon" href="favicon.png" type="image/gif" sizes="16x16" />
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
 
-      li {
-        float: left;
-      }
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      width: 100%;
+      position: fixed;
+      display: flex;
+      background-color: #ffffff;
+      justify-content: space-between;
+    }
 
-      li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-      }
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a img {
+      width: 30%;
+    }
+
+    @media only screen and (max-width: 600px) {
       li a img {
-        width: 30%;
+        width: 50%;
       }
-      @media only screen and (max-width: 600px) {
-        li a img {
-          width: 50%;
-        }
-      }
-      .get {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        text-align: center;
-        transform: translate(-50%, -50%);
-        color: #fff;
-      }
-      .heading {
-        text-shadow: 0px 0px 10px white;
-      }
-      .show {
-        display: block !important;
-        opacity: 1 !important;
-        -webkit-transition: all 0.5s;
-        transition: all 0.5s;
-      }
-      .hide {
-        opacity: 0;
-        -webkit-transition: all 0.5s;
-        transition: all 0.5s;
-      }
-      .button {
-        position: relative;
-        cursor: pointer;
-        display: inline-block;
-        font-family: "brandon-grotesque", sans-serif;
-        text-transform: uppercase;
-        min-width: 200px;
-        margin-top: 30px;
-      }
-      .button:hover .border {
-        box-shadow: 0px 0px 10px 0px white;
-      }
-      .button:hover .border .left-plane,
-      .button:hover .border .right-plane {
-        transform: translateX(0%);
-      }
-      .button:hover .text {
-        color: #121212;
-      }
-      .button .border {
-        border: 1px solid white;
-        transform: skewX(-20deg);
-        height: 32px;
-        border-radius: 3px;
-        overflow: hidden;
-        position: relative;
-        transition: 0.1s ease-out;
-      }
-      .button .border .left-plane,
-      .button .border .right-plane {
-        position: absolute;
-        background: white;
-        height: 32px;
-        width: 100px;
-        transition: 0.15s ease-out;
-      }
-      .button .border .left-plane {
-        left: 0;
-        transform: translateX(-100%);
-      }
-      .button .border .right-plane {
-        right: 0;
-        transform: translateX(100%);
-      }
-      .button .text {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        transition: 0.15s ease-out;
-      }
-      .text-right {
-        text-align: right;
-      }
+    }
 
-      .text-left {
-        text-align: left;
-      }
-      #getin {
-        display: none;
-        opacity: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <ul>
-      <li>
-        <a href="#"><img src="./SVG/csi.svg" alt=""/></a>
-      </li>
-      <li>
-        <a href="#"><img src="./SVG/augnex.svg" alt=""/></a>
-      </li>
-      <li>
-        <a href="#"><img src="./SVG/Technex.svg" alt=""/></a>
-      </li>
-    </ul>
-    <div class="get">
-      <h1 class="heading" id="heading">
-        Welcome Back to Future
-      </h1>
-      <div class="button shift-camera-button" id="sengine">
-        <div class="border">
-          <div class="left-plane"></div>
-          <div class="right-plane"></div>
-        </div>
-        <div class="text" id="button">Start Engine</div>
-        <div class="text" id="getin">Dive into reality</div>
+    .get {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      text-align: center;
+      transform: translate(-50%, -50%);
+      color: #fff;
+    }
+
+    .heading {
+      text-shadow: 0px 0px 10px white;
+    }
+
+    .show {
+      display: block !important;
+      opacity: 1 !important;
+      -webkit-transition: all 0.5s;
+      transition: all 0.5s;
+    }
+
+    .hide {
+      opacity: 0;
+      -webkit-transition: all 0.5s;
+      transition: all 0.5s;
+    }
+
+    .button {
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      font-family: "brandon-grotesque", sans-serif;
+      text-transform: uppercase;
+      min-width: 200px;
+      margin-top: 30px;
+    }
+
+    .button:hover .border {
+      box-shadow: 0px 0px 10px 0px white;
+    }
+
+    .button:hover .border .left-plane,
+    .button:hover .border .right-plane {
+      transform: translateX(0%);
+    }
+
+    .button:hover .text {
+      color: #121212;
+    }
+
+    .button .border {
+      border: 1px solid white;
+      transform: skewX(-20deg);
+      height: 32px;
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+      transition: 0.1s ease-out;
+    }
+
+    .button .border .left-plane,
+    .button .border .right-plane {
+      position: absolute;
+      background: white;
+      height: 32px;
+      width: 100px;
+      transition: 0.15s ease-out;
+    }
+
+    .button .border .left-plane {
+      left: 0;
+      transform: translateX(-100%);
+    }
+
+    .button .border .right-plane {
+      right: 0;
+      transform: translateX(100%);
+    }
+
+    .button .text {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: 0.15s ease-out;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    .text-left {
+      text-align: left;
+    }
+
+    #getin {
+      display: none;
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li>
+      <a href="#"><img src="./SVG/csi.svg" alt="" /></a>
+    </li>
+    <li>
+      <a href="#"><img src="./SVG/augnex.svg" alt="" /></a>
+    </li>
+    <li>
+      <a href="#"><img src="./SVG/Technex.svg" alt="" /></a>
+    </li>
+  </ul>
+  <div class="get">
+    <h1 class="heading" id="heading">
+      Welcome Back to Future
+    </h1>
+    <div class="button shift-camera-button" id="sengine">
+      <div class="border">
+        <div class="left-plane"></div>
+        <div class="right-plane"></div>
       </div>
+      <div class="text" id="button">Start Engine</div>
+      <div class="text" id="getin">Dive into reality</div>
     </div>
-    <canvas></canvas>
-    <div
-      style="
+  </div>
+  <canvas></canvas>
+  <div style="
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -168,28 +188,24 @@
     padding: 20px 0;
     display: flex;
     justify-content: center;
-"
-    >
-      <a
-        href="#"
-        style="display: block;
+">
+    <a href="#" style="display: block;
       color: black;
       text-align: center;
       padding: 5px 0px;
-      text-decoration: none;"
-        >Contributors</a
-      >
-    </div>
-    <script src="./canvas.js"></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("./sw.js")
-            .then(reg => console.log("Service Worker: Registered (Pages)"))
-            .catch(err => console.log(`Service Worker: Error: ${err}`));
-        });
-      }
-    </script>
-  </body>
+      text-decoration: none;">Contributors</a>
+  </div>
+  <script src="./canvas.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("./sw.js")
+          .then(reg => console.log("Service Worker: Registered (Pages)"))
+          .catch(err => console.log(`Service Worker: Error: ${err}`));
+      });
+    }
+  </script>
+</body>
+
 </html>
